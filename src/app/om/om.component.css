@@ -475,11 +475,10 @@
    
   .label {
     font-size: 20px;
-    font-weight: bold;
     display: block;
   }
    
-  .value {
-    font-size: 24px;
-    display: block;
+  .bvalue {
+    font-size: 20px;
+    color: #ccc;
   }

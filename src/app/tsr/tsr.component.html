@@ -215,7 +215,12 @@
                 <!-- <p>Your learning time throughout the week</p> -->
                 <div class="time-filter">
                     <p>Your learning time throughout the week</p>
-                    <button class="filter">Last Week ▼</button>
+                    <div class="dropdown">
+                        <select>
+                          <option value="all-time">Current Week</option>
+                          <option value="weekly">Last week</option>
+                        </select>
+                    </div>
                 </div>
                 <canvas id="weeklyActivitiesChart"></canvas>
             </div>
@@ -225,7 +230,13 @@
                 <!-- <p>Track your program completion over time</p> -->
                 <div class="time-filter">
                     <p>Track your program completion over time</p>
-                    <button class="filter">Weekly ▼</button>
+                    <div class="dropdown">
+                        <select>
+                          <option value="all-time">Overall</option>
+                          <option value="monthly">Last month</option>
+                          <option value="weekly">Last week</option>
+                        </select>
+                    </div>
                 </div>
                 <canvas id="performanceChart"></canvas>
             </div>
