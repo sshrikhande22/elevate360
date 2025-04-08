@@ -1,6 +1,5 @@
 import { Component , AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { Chart, registerables } from 'chart.js/auto';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import annotationPlugin from 'chartjs-plugin-annotation';
@@ -10,7 +9,7 @@ Chart.register(...registerables, annotationPlugin);
 @Component({
   selector: 'app-tsr',
   standalone: true,
-  imports: [RouterOutlet,CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent],
   templateUrl: './tsr.component.html',
   styleUrl: './tsr.component.css'
 })
