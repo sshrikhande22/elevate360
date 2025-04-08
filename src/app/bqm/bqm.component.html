@@ -1,0 +1,91 @@
+<div class="wrapper">  
+  <app-sidebar/>
+    <!-- main-content -->
+  
+    <div class="main-content">
+  
+      <nav class="topbar">
+          <h3 class="title">Overview</h3>
+          <div class="search-bar">
+            <input type="text" placeholder="Search here..." />
+          </div>
+          <div class="user-profile">
+            <img src="bell.png" style="width: 40px; height: 40px;"> 
+            <img class="user-img" src="c.png" />
+          </div>
+      </nav>
+  
+      <!-- specialization -->
+      <div class="container">
+  
+        <div class="pie">
+          <p class="title">Specialization</p>
+          <canvas id="piesChart"></canvas>
+        </div>
+    
+  
+        <!-- bqm Performers -->
+        <div class="bqm-performers-container">
+          <h3>BQM Performers</h3>
+          <div class="bqm-card" *ngFor="let performer of performers">
+            <div class="bqm-avatar">
+              <img src="c.png" alt="Icon" />
+            </div>
+            <div class="bqm-details">
+              <div class="name">{{ performer.name }}</div>
+              <div class="specialization">{{ performer.specialization }}</div>
+            </div>
+            <button class="view-button">View Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+   
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>TSR</th>
+                <th>Specialization</th>
+                <th>Trainings</th>
+                <th>Pass %</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of tableData">
+                <td>
+                  <img src="image.png" alt="Icon" class="icon" />
+                  {{ item.tsr }}
+                </td>
+                <td>{{ item.specialization }}</td>
+                <td>{{ item.trainings }}</td>
+                <td>{{ item.passPercentage }}</td>
+   
+                <td [ngClass]="{'text-red': item.score < 0, 'text-green': item.score > 0}">
+                  {{ item.score < 0 ? '-$' + (-item.score) : '+$' + item.score }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+   
+        <div class="top-reasons-container">
+          <h2 class="title">Top Reasons</h2>
+          <div class="reasons-list">
+            <div class="reason-item" *ngFor="let reason of reasons">
+              <div class="icon-box" [ngStyle]="{'background-color': reason.bgColor}">
+                <img [src]="reason.icon" alt="icon" />
+              </div>
+              <div class="text-content">
+                <p class="reason-title">{{ reason.title }} <br> {{ reason.percentage }} </p>
+                <!-- <p class="reason-percentage">{{ reason.percentage }}</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      

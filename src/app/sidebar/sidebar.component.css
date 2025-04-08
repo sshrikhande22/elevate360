@@ -1,0 +1,106 @@
+/* Sidebar Styles */
+  
+.sidebar {
+  
+    width: 250px;
+  
+    background: #fff;
+  
+    padding: 40px 20px;
+  
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  
+  }
+  
+  
+  
+  .sidebar-header {
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 10px;
+  
+    margin-bottom: 20px;
+
+  
+  }
+  
+  
+  
+  .logo-box {
+  
+    background: #5D5FEF;
+  
+    border-radius: 8px;
+  
+  }
+  
+  
+  
+  .app-name {
+  
+    font-size: 30px;
+  
+    font-weight: 600;
+  
+    color: orange;
+  
+    text-align: center;
+  
+  }
+  
+  .search-bar input {
+  
+    padding: 10px;
+  
+    border-radius: 8px;
+  
+    border: 1px solid #ccc;
+  
+    width: 300px;
+
+    margin-bottom: 10px;
+  
+  }
+  
+  .nav-link {
+  
+    display: flex;
+  
+    padding: 15px 20px;
+  
+    color: #737791;
+  
+    font-size: 18px;
+  
+    margin-bottom: 10px;
+  
+    border-radius: 12px;
+  
+  }
+  
+  
+  
+  .nav-link.active,
+  
+  .nav-link:hover {
+  
+    /* background: #5D5FEF;
+  
+    color: #fff; */
+
+    color: #5D5FEF;
+  
+  }
+  
+  
+  
+  .settings {
+  
+    position: absolute;
+  
+    bottom: 20px;
+  
+  }

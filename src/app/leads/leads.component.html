@@ -1,0 +1,90 @@
+<div class="wrapper">
+    <!-- main-content -->
+  <app-sidebar/>
+    <div class="main-content">
+  
+      <nav class="topbar">
+  
+        <h3 class="title">AI/ML Team Performance</h3>
+        <div class="search-bar">
+    
+          <input type="text" placeholder="Search here..." />
+  
+        </div>
+      
+        <div class="user-profile">
+  
+          <img src="bell.png" style="width: 40px; height: 40px;"> 
+    
+          <img class="user-img" src="c.png" />
+    
+        </div>
+    
+      </nav>
+  
+      <div class="filters">
+        <div class="time-filter">
+          <button>Team View ▼</button>
+        </div>
+        <div class="time-filter">
+          <button>Last Month ▼</button>
+        </div>
+      </div>
+  
+      <div class="card-container">
+        <div class="card team">
+          <h3 style="text-align: left; color: green; ">My Team</h3>
+          <p style="text-align: left; color: green; ">Total Score<br></p>
+          <span class="value" style="color: green; ">97 ▲<br></span>
+          <small>compared to 85 in Feb 2025</small>
+        </div>
+        <div class="card benchmark">
+          <h3 style="text-align: left; color: blue;">Benchmark</h3>
+          <p style="text-align: left; color: blue;">Total Score<br></p>
+          <span class="value" style="color: blue;">85 ▼<br></span>
+          <small>compared to 89 in Feb 2025</small>
+        </div>
+      </div>
+  
+      <!-- Line charts -->
+      <div class="chart-box">
+        <h3>Benchmarks</h3>
+        <canvas id="benchmarkChart"></canvas>
+      </div>
+  
+      <!-- Table -->
+      <div class="table-container">
+        <div class="tsr-header">
+          <label>TSR:</label>
+          <button class="tsr-button">Lorem Ipsum</button>
+        </div>
+        <table class="table">
+          <thead class="border">
+            <tr>
+              <th>TSR</th>
+              <th>Metric</th>
+              <th>Benchmark</th>
+              <th>Team Average</th>
+              <th>TSR Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of tableData">
+              <td>{{ row.tsr }}</td>
+              <td>{{ row.metric }}</td>
+              <td>{{ row.benchmark }}</td>
+              <td>{{ row.teamAverage }}</td>
+              <td>{{ row.tsrScore }}</td>
+            </tr>
+          </tbody>
+          <tfoot class="border">
+            <tr>
+              <td colspan="4">TOTAL</td>
+              <td>97/100</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  
+  </div>

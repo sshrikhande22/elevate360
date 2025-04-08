@@ -1,0 +1,11 @@
+.wrapper {
+
+    display: flex;
+  
+    height: 100vh;
+  
+    background: #FAFBFC;
+  
+    font-family: 'Poppins', sans-serif;
+  
+  }

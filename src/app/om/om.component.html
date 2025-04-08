@@ -1,0 +1,171 @@
+<div class="wrapper">
+  <app-sidebar/>
+    <!-- main-content -->
+  
+    <div class="main-content">
+  
+      <nav class="topbar">
+  
+        <h2 class="title">Overview</h2>
+  
+        <div class="search-bar">
+    
+          <input type="text" placeholder="Search here..." />
+    
+        </div>
+    
+        <div class="user-profile">
+  
+          <img src="s.png" style="width: 40px; height: 40px;">
+  
+          <img src="bell.png" style="width: 40px; height: 40px;">
+  
+          <img class="user-img" src="https://placehold.co/60x60" alt="User" />
+  
+        </div>
+  
+      </nav>
+  
+      <div class="cards-container">
+        
+        <div class="card course">
+          <p><img src="course.png" style="width: 20px; height: 20px;"> Courses in progress</p>
+          <span class="value">3</span>
+        </div>
+        <div class="card proto">
+          <p><img src="active.png" style="width: 20px; height: 20px;"> Active Prototypes</p>
+          <span class="value">7</span>
+        </div>
+        <div class="card hours">
+          <p><img src="hours.png" style="width: 20px; height: 20px;"> Hours Learning</p>
+          <span class="value">3h 15m</span>
+        </div>
+        <div class="card score">
+          <p><img src="score.png" style="width: 20px; height: 20px;"> Community Score</p>
+          <span class="value">240</span>
+        </div>
+      </div>
+  
+      <div class="container">
+        <!-- chart -->
+        <div class="chart-container">   
+          <div class="toggle-buttons">
+            <button (click)="setData('week')" [class.active]="activeFilter === 'week'">week</button>
+            <button (click)="setData('month')" [class.active]="activeFilter === 'month'">month</button>
+          </div>
+          <canvas id="barChart"></canvas>
+        </div>
+        <!-- doughnut chart -->
+        <div class="progress-card">
+          <p class="title">PROGRESS</p>
+          <canvas id="progressChart"></canvas>
+        </div>
+      </div>
+      <!-- pie charts -->
+      <div class="card-container">
+        <div class="cards">
+          <div class="firstpie">
+            <div class="card-header">
+              <mat-icon>school</mat-icon>
+              <span class="card-title">Introduction to This</span>
+            </div>
+            <div class="card-author">
+              <mat-icon>person</mat-icon>
+              <span>Shams Tabrez</span>
+            </div>
+            <canvas id="chart1"></canvas>
+          </div>
+          <div class="second">
+            <div class="card-header">
+              <mat-icon>school</mat-icon>
+              <span class="card-title">English for Today</span>
+            </div>
+            <div class="card-author">
+              <mat-icon>person</mat-icon>
+              <span>Shams Tabrez</span>
+            </div>
+            <canvas id="chart2"></canvas>
+          </div>
+          <div class="third">
+            <div class="card-header">
+              <mat-icon>school</mat-icon>
+              <span class="card-title">Basics of This</span>
+            </div>
+            <div class="card-author">
+              <mat-icon>person</mat-icon>
+              <span>Shams Tabrez</span>
+            </div>
+            <canvas id="chart3"></canvas>
+          </div>
+        </div>
+      </div>
+  
+      <div class="charts-section">
+        <div class="chart-box">
+          <h5>Weekly Activity</h5>
+          <canvas id="weeklyActivity"></canvas>
+        </div>
+  
+        <div class="statistics-card">
+          <p class="title">Training Statistics</p>
+          <canvas id="statisticsChart"></canvas>
+        </div>
+      </div>
+  
+      <div class="bottom">
+        <!-- table -->
+        <div class="blue-table">
+          <div class="row">
+            <div class="col">
+              <span class="label">Active Headcount</span>
+              <span class="value">300</span>
+            </div>
+            <div class="col">
+              <span class="label">On Target</span>
+              <span class="value">100</span>
+            </div>
+            <div class="col">
+              <span class="label">BQM</span>
+              <span class="value">30</span>
+            </div>
+            <div class="col">
+              <span class="label">Over Achievers</span>
+              <span class="value">15</span>
+            </div>
+            <img src="Chip_Card.png" style="width: 25px; height: 25px;"/>
+          </div>
+          <div class="row">
+            <div class="col">
+              <span class="label">Ongoing Trainings</span>
+              <span class="value">300</span>
+            </div>
+            <div class="col">
+              <span class="label">Planned Trainings</span>
+              <span class="value">100</span>
+            </div>
+            <div class="col">
+              <span class="label">Completed Trainings</span>
+              <span class="value">30</span>
+            </div>
+            <div class="col">
+              <span class="label">Total Badges Offered</span>
+              <span class="value">200</span>
+            </div>
+            <img src="leader.png" style="width: 35px; height: 25px;"/>
+          </div>
+        </div>
+        <!-- top performers -->
+        <div class="leader">
+          <div class="leader-header">
+            <h3>Top Performers</h3>
+          </div>
+          <table>
+            <tr *ngFor="let player of leaderboard">
+                <td> <img style="width: 20px; height: 20px;" [src] = "player.img"/> {{ player.name }} <br> {{ player.role }}</td>
+                <td>{{ player.score }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

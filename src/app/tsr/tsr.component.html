@@ -1,0 +1,252 @@
+<div class="wrapper">
+    <app-sidebar/>
+
+    <!-- main-content -->
+
+    <div class="main-content">
+
+        <nav class="topbar">
+
+            <h3 class="title">Training and Performance Overview - Gaurav</h3>
+      
+        
+            <div class="user-profile">
+
+              <img src="bell.png" style="width: 40px; height: 40px;"> 
+      
+              <img class="user-img" src="c.png" />
+      
+            </div>
+      
+        </nav>
+
+        <div class="stats-container">
+
+            <div class="time-filter">
+                <h3>Training Statistics</h3>
+                <button class="filter">7 days ago ▼</button>
+            </div>
+          
+            <div class="stats-grid">
+                <div class="stat-card" *ngFor="let stat of training_statistics">
+                    <div class="stat-header">
+                       <span>{{ stat.title }}</span>
+                       <span class="menu-icon">⋯</span>
+                    </div>
+          
+                    <div class="stat-value">
+                        <strong>{{ stat.value }}</strong>
+                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
+                          <div class="progress" [style.width.%]="stat.progress"></div>
+                        </div>
+                    </div>
+          
+                    <div class="extra-info" *ngIf="stat.extra">
+                       <span class="extra-badge">{{ stat.extra }}</span>
+                    </div>
+          
+                    <div class="extra-info" *ngIf="stat.badge">
+                       <span class="badge">{{ stat.badge }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-container">
+
+            <div class="time-filter">
+                <h3>Performance Statistics</h3>
+                <button class="filter">7 days ago ▼</button>
+            </div>
+          
+            <div class="stats-grid">
+                <div class="stat-card" *ngFor="let stat of performance_statistics">
+                    <div class="stat-header">
+                       <span>{{ stat.title }}</span>
+                       <span class="menu-icon">⋯</span>
+                    </div>
+          
+                    <div class="stat-value">
+                        <strong>{{ stat.value }}</strong>
+                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
+                          <div class="progress" [style.width.%]="stat.progress"></div>
+                        </div>
+                    </div>
+          
+                    <div class="extra-info" *ngIf="stat.extra">
+                       <span class="extra-badge">{{ stat.extra }}</span>
+                    </div>
+          
+                    <div class="extra-info" *ngIf="stat.badge">
+                       <span class="badge">{{ stat.badge }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <!-- <h3>Performance Scorecard</h3> -->
+
+            <div class="time-filter">
+                <h3>Performance Scorecard</h3>
+                <button class="filter">7 days ago ▼</button>
+            </div>
+          
+            <div class="stats-grid1">
+                <div class="stat-card" *ngFor="let stat of performance_scorecard1">
+                    <div class="stat-header">
+                       <span>{{ stat.title }}</span>
+                       <span class="menu-icon">⋯</span>
+                    </div>
+          
+                    <div class="stat-value">
+                        <strong>{{ stat.value }}</strong>
+                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
+                          <div class="progress" [style.width.%]="stat.progress"></div>
+                        </div>
+                    </div>
+          
+                    <div class="extra-info" *ngIf="stat.extra">
+                       <span class="extra-badge">{{ stat.extra }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-flex">
+                <div class="stat-card" *ngFor="let stat of performance_scorecard2">
+                    <div class="stat-header">
+                       <span>{{ stat.title }}</span>
+                       <span class="menu-icon">⋯</span>
+                    </div>
+          
+                    <div class="stat-value">
+                        <strong>{{ stat.value }}</strong>
+                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
+                          <div class="progress" [style.width.%]="stat.progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-container">
+            <!-- Leaderboard Table -->
+            <div class="card">
+                <div class="card-header">
+                   <h3>Training Leaderboard</h3>
+                   <span class="menu-icon">⋯</span>
+                </div>
+                <p>Top performers in your program</p>
+          
+                <table>
+                    <thead>
+                        <tr>
+                           <th><input type="checkbox"></th>
+                           <th>Name ⬇</th>
+                           <th>Scores</th>
+                           <th>Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let player of leaderboard">
+                            <td><input type="checkbox"></td>
+                            <td> <img src="c.png" style="width: 20px; height: 20px;"/> {{ player.name }} <br> Rank #1</td>
+                            <td>{{ player.score }}</td>
+                            <td><span class="rank-badge">{{ player.rank }}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+          
+                <div class="pagination">
+                    <button>Previous</button>
+                    <span>Page 1 of 10</span>
+                    <button>Next</button>
+                </div>
+            </div>
+          
+            <!-- Assessments Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Training Assessment</h3>
+                    <span class="menu-icon">⋯</span>
+                </div>
+                <p>Track all pending assessments here</p>
+          
+                <ul class="assessment-list">
+                    <li *ngFor="let assessment of assessments">
+                       <input type="checkbox">
+                       <div>
+                           {{ assessment.title }}
+                           <br> {{ assessment.date }} • Mark: {{ assessment.mark }}
+                        </div>
+                        <button *ngIf="assessment.action" class="view-btn">{{ assessment.action }}</button>
+                    </li>
+                </ul>
+          
+                <div class="pagination">
+                   <button>Previous</button>
+                   <span>Page 1 of 10</span>
+                   <button>Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-box">
+                <h3>Weekly Activities</h3>
+                <!-- <p>Your learning time throughout the week</p> -->
+                <div class="time-filter">
+                    <p>Your learning time throughout the week</p>
+                    <button class="filter">Last Week ▼</button>
+                </div>
+                <canvas id="weeklyActivitiesChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h3>Performance</h3>
+                <!-- <p>Track your program completion over time</p> -->
+                <div class="time-filter">
+                    <p>Track your program completion over time</p>
+                    <button class="filter">Weekly ▼</button>
+                </div>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="bottom">
+           <img class="imafe" src="image.png" >  
+                       
+            <div class="leaderboard">
+              <h2>Specialization</h2>
+            
+              <div class="time-filter">
+                <span>1 min</span>
+                <span>5 min</span>
+                <span>15 min</span>
+                <span class="active">1</span>
+                <span>4 hr</span>
+                <span>1 day</span>
+              </div>
+      
+              <div class="data-table">
+                <div *ngFor="let item of specializations" class="data-row">
+                  <div class="icon-name">
+                    <img [src]="item.icon" class="icon" />
+                    <span>{{ item.name }}</span>
+                  </div>
+                  <div class="value">{{ item.value | number }}</div>
+                  <div class="change" [ngClass]="{'up': item.change > 0, 'down': item.change < 0}">
+                    {{ (item.change * 100) | number:'1.2-2' }}%
+                  </div>
+                </div>
+              </div>
+            </div> 
+        
+           
+        </div>
+
+    </div>
+
+
+
+</div>

@@ -1,0 +1,301 @@
+.wrapper {
+
+    display: flex;
+  
+    height: 100vh;
+  
+    background: #FAFBFC;
+  
+    font-family: 'Poppins', sans-serif;
+  
+  }
+  
+  
+  
+  /* Sidebar Styles */
+  
+  .sidebar {
+  
+    width: 250px;
+  
+    background: #fff;
+  
+    padding: 40px 20px;
+  
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  
+  }
+  
+  
+  
+  .sidebar-header {
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 10px;
+  
+    margin-bottom: 20px;
+
+  
+  }
+  
+  
+  
+  .logo-box {
+  
+    background: #5D5FEF;
+  
+    border-radius: 8px;
+  
+  }
+  
+  
+  
+  .app-name {
+  
+    font-size: 30px;
+  
+    font-weight: 600;
+  
+    color: orange;
+  
+    text-align: center;
+  
+  }
+  
+  .search-bar input {
+  
+    padding: 10px;
+  
+    border-radius: 8px;
+  
+    border: 1px solid #ccc;
+  
+    width: 300px;
+
+    margin-bottom: 10px;
+  
+  }
+  
+  .nav-link {
+  
+    display: flex;
+  
+    padding: 15px 20px;
+  
+    color: #737791;
+  
+    font-size: 18px;
+  
+    margin-bottom: 10px;
+  
+    border-radius: 12px;
+  
+  }
+  
+  
+  
+  .nav-link.active,
+  
+  .nav-link:hover {
+  
+    /* background: #5D5FEF;
+  
+    color: #fff; */
+
+    color: #5D5FEF;
+  
+  }
+  
+  
+  
+  .settings {
+  
+    position: absolute;
+  
+    bottom: 20px;
+  
+  }
+  
+  
+  
+  /* Main Content Styles */
+  
+  .main-content {
+  
+    flex-grow: 1;
+  
+    padding: 20px 20px;
+  
+    overflow-y: auto;
+  
+  }
+  
+  
+  
+  .topbar {
+  
+    display: flex;
+  
+    justify-content: space-between;
+  
+    align-items: center;
+  
+    background: #fff;
+  
+    padding: 20px;
+  
+    border-radius: 16px;
+  
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  
+    /* margin-bottom: 10px; */
+  
+  }
+
+  .user-profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+
+  .user-img {
+  
+    width: 40px;
+  
+    height: 40px;
+  
+    border-radius: 12px;
+  
+  }
+  
+  .filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 100px;
+  }
+
+  .time-filter{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  button {
+    background: #f3f4f6;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .card-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    gap: 10px;
+    padding-left: 300px;
+    padding-right: 300px;
+    width: 100%;
+    }
+
+  .card{
+    width: 200px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    padding-top: 0;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .card .value{
+     font-size: 30px;
+     font-weight: bold; 
+  }
+
+  .chart-box {
+    background: #fff;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    max-height: 500px;
+  }
+  .table-container {
+    background: #fff;
+   
+    padding: 20px;
+
+    margin-top: 10px;
+   
+    border-radius: 20px;
+   
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+   
+  .tsr-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+   
+  .tsr-header label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+   
+  .tsr-button {
+    background-color: #3b4cb3;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+   
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+  }
+
+  .table thead tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+  }
+  .table thead tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+  }
+  .table tfoot tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+  .table tfoot tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+   
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+   
+  th {
+    background-color: #3b4cb3;
+    color: white;
+  }
+   
+  tfoot {
+    background-color: #555;
+    color: white;
+    font-weight: bold;
+  }
+
+  .border{
+    border-style: hidden !important;
+  }
+  
