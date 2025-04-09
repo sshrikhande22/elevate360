@@ -20,132 +20,117 @@
       
         </nav>
 
-        <div class="stats-container">
-
-            <div class="time-filter">
-                <h3>Training Statistics</h3>
-                <div class="dropdown">
-                    <select>
-                      <option value="all-time">Overall</option>
-                      <option value="monthly">Last month</option>
-                      <option value="weekly">Last week</option>
-                    </select>
-                </div>
-            </div>
-          
-            <div class="stats-grid">
-                <div class="stat-card" *ngFor="let stat of training_statistics">
-                    <div class="stat-header">
-                       <span>{{ stat.title }}</span>
-                       <span class="menu-icon">⋯</span>
-                    </div>
-          
-                    <div class="stat-value">
-                        <strong>{{ stat.value }}</strong>
-                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
-                          <div class="progress" [style.width.%]="stat.progress"></div>
-                        </div>
-                    </div>
-          
-                    <div class="extra-info" *ngIf="stat.extra">
-                       <span class="extra-badge">{{ stat.extra }}</span>
-                    </div>
-          
-                    <div class="extra-info" *ngIf="stat.badge">
-                       <span class="badge">{{ stat.badge }}</span>
-                    </div>
-                </div>
-            </div>
+        <!-- HTML FILE -->
+<div class="stats-container">
+    <div class="time-filter">
+      <h3>Training Statistics</h3>
+      <div class="dropdown">
+        <select [(ngModel)]="trainingFilter" (change)="onTrainingFilterChange()">
+          <option value="all-time">Overall</option>
+          <option value="monthly">Last month</option>
+          <option value="weekly">Last week</option>
+        </select>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let stat of training_statistics">
+        <div class="stat-header">
+          <span>{{ stat.title }}</span>
+          <span class="menu-icon">⋯</span>
         </div>
-
-        <div class="stats-container">
-
-            <div class="time-filter">
-                <h3>Performance Statistics</h3>
-                <div class="dropdown">
-                    <select>
-                      <option value="all-time">Overall</option>
-                      <option value="monthly">Last month</option>
-                      <option value="weekly">Last week</option>
-                    </select>
-                </div>
-            </div>
-          
-            <div class="stats-grid">
-                <div class="stat-card" *ngFor="let stat of performance_statistics">
-                    <div class="stat-header">
-                       <span>{{ stat.title }}</span>
-                       <span class="menu-icon">⋯</span>
-                    </div>
-          
-                    <div class="stat-value">
-                        <strong>{{ stat.value }}</strong>
-                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
-                          <div class="progress" [style.width.%]="stat.progress"></div>
-                        </div>
-                    </div>
-          
-                    <div class="extra-info" *ngIf="stat.extra">
-                       <span class="extra-badge">{{ stat.extra }}</span>
-                    </div>
-          
-                    <div class="extra-info" *ngIf="stat.badge">
-                       <span class="badge">{{ stat.badge }}</span>
-                    </div>
-                </div>
-            </div>
+        <div class="stat-value">
+          <strong>{{ stat.value }}</strong>
+          <div *ngIf="stat.progress !== undefined" class="progress-bar">
+            <div class="progress" [style.width.%]="stat.progress"></div>
+          </div>
         </div>
-
-        <div class="stats-container">
-            <!-- <h3>Performance Scorecard</h3> -->
-
-            <div class="time-filter">
-                <h3>Performance Scorecard</h3>
-                <div class="dropdown">
-                    <select>
-                      <option value="all-time">Overall</option>
-                      <option value="monthly">Last month</option>
-                      <option value="weekly">Last week</option>
-                    </select>
-                </div>
-            </div>
-          
-            <div class="stats-grid1">
-                <div class="stat-card" *ngFor="let stat of performance_scorecard1">
-                    <div class="stat-header">
-                       <span>{{ stat.title }}</span>
-                       <span class="menu-icon">⋯</span>
-                    </div>
-          
-                    <div class="stat-value">
-                        <strong>{{ stat.value }}</strong>
-                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
-                          <div class="progress" [style.width.%]="stat.progress"></div>
-                        </div>
-                    </div>
-          
-                    <div class="extra-info" *ngIf="stat.extra">
-                       <span class="extra-badge">{{ stat.extra }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stats-flex">
-                <div class="stat-card" *ngFor="let stat of performance_scorecard2">
-                    <div class="stat-header">
-                       <span>{{ stat.title }}</span>
-                       <span class="menu-icon">⋯</span>
-                    </div>
-          
-                    <div class="stat-value">
-                        <strong>{{ stat.value }}</strong>
-                        <div *ngIf="stat.progress !== undefined" class="progress-bar">
-                          <div class="progress" [style.width.%]="stat.progress"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="extra-info" *ngIf="stat.extra">
+          <span class="extra-badge">{{ stat.extra }}</span>
         </div>
+        <div class="extra-info" *ngIf="stat.badge">
+          <span class="badge">{{ stat.badge }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="stats-container">
+    <div class="time-filter">
+      <h3>Performance Statistics</h3>
+      <div class="dropdown">
+        <select [(ngModel)]="performanceFilter" (change)="onPerformanceFilterChange()">
+          <option value="all-time">Overall</option>
+          <option value="monthly">Last month</option>
+          <option value="weekly">Last week</option>
+        </select>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let stat of performance_statistics">
+        <div class="stat-header">
+          <span>{{ stat.title }}</span>
+          <span class="menu-icon">⋯</span>
+        </div>
+        <div class="stat-value">
+          <strong>{{ stat.value }}</strong>
+          <div *ngIf="stat.progress !== undefined" class="progress-bar">
+            <div class="progress" [style.width.%]="stat.progress"></div>
+          </div>
+        </div>
+        <div class="extra-info" *ngIf="stat.extra">
+          <span class="extra-badge">{{ stat.extra }}</span>
+        </div>
+        <div class="extra-info" *ngIf="stat.badge">
+          <span class="badge">{{ stat.badge }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="stats-container">
+    <div class="time-filter">
+      <h3>Performance Scorecard</h3>
+      <div class="dropdown">
+        <select [(ngModel)]="scorecardFilter" (change)="onScorecardFilterChange()">
+          <option value="all-time">Overall</option>
+          <option value="monthly">Last month</option>
+          <option value="weekly">Last week</option>
+        </select>
+      </div>
+    </div>
+    <div class="stats-grid1">
+      <div class="stat-card" *ngFor="let stat of performance_scorecard1">
+        <div class="stat-header">
+          <span>{{ stat.title }}</span>
+          <span class="menu-icon">⋯</span>
+        </div>
+        <div class="stat-value">
+          <strong>{{ stat.value }}</strong>
+          <div *ngIf="stat.progress !== undefined" class="progress-bar">
+            <div class="progress" [style.width.%]="stat.progress"></div>
+          </div>
+        </div>
+        <div class="extra-info" *ngIf="stat.extra">
+          <span class="extra-badge">{{ stat.extra }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="stats-flex">
+      <div class="stat-card" *ngFor="let stat of performance_scorecard2">
+        <div class="stat-header">
+          <span>{{ stat.title }}</span>
+          <span class="menu-icon">⋯</span>
+        </div>
+        <div class="stat-value">
+          <strong>{{ stat.value }}</strong>
+          <div *ngIf="stat.progress !== undefined" class="progress-bar">
+            <div class="progress" [style.width.%]="stat.progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
         <div class="dashboard-container">
             <!-- Leaderboard Table -->

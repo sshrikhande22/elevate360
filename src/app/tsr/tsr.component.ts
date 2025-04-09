@@ -1,24 +1,136 @@
-import { Component , AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component , AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables } from 'chart.js/auto';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import annotationPlugin from 'chartjs-plugin-annotation';
+import { FormsModule } from '@angular/forms';
 
 Chart.register(...registerables, annotationPlugin);
 
 @Component({
   selector: 'app-tsr',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent, FormsModule],
   templateUrl: './tsr.component.html',
   styleUrl: './tsr.component.css'
 })
 export class TsrComponent implements AfterViewInit{
   title = 'tsr';
 
+  // Dropdown filter values
+  trainingFilter: string = 'all-time';
+  performanceFilter: string = 'all-time';
+  scorecardFilter: string = 'all-time';
+
+
+  // Original data (mock or real)
+  trainingStatisticsData = {
+    weekly: [
+      { title: 'Courses Completed', value: 5, progress: 50 },
+      { title: 'Hours Invested This Week', value: '4h', extra: "+2h 14m last week" },
+      { title: 'Quizzes Passed', value: 3, extra: "Advanced" },
+      { title: "Leaderboard Rank", value: '#14', extra: "Top 10%"}
+    ],
+    monthly: [
+      { title: 'Courses Completed', value: 12, progress: 80 },
+      { title: 'Hours Invested This Month', value: '14h', extra: "+10h 14m last month",},
+      { title: 'Quizzes Passed', value: 8, extra: "Intermediate" },
+      { title: "Leaderboard Rank", value: '#14', extra: "Top 16%"}
+    ],
+    overall: [
+      { title: 'Courses Completed', value: 45, progress: 100 },
+      { title: 'Hours Invested', value: '60h', extra: "20% better"},
+      { title: 'Quizzes Passed', value: 30, extra: "Beginner"},
+      { title: "Leaderboard Rank", value: '#14', extra: "Top 20%" }
+    ]
+  };
+  
+
+  performanceStatisticsData = {
+    weekly: [
+      { title: 'Task Completion', value: '70%', progress: 70 },
+      { title: 'Accuracy', value: '88%', progress: 69 },
+      { title: "Current Score", value: 376, progress: 34 },
+      { title: "Rank in Team", value: "#12", extra: "Top 20%"}
+    ],
+    monthly: [
+      { title: 'Task Completion', value: '85%', progress: 85 },
+      { title: 'Accuracy', value: '91%', progress: 91 },
+      { title: "Current Score", value: 456, progress: 75},
+      { title: "Rank in Team", value: "#11", extra: "Top 45%"}
+    ],
+    overall: [
+      { title: 'Task Completion', value: '92%', progress: 92 },
+      { title: 'Accuracy', value: '95%', progress: 95 },
+      { title: "Current Score", value: 765, progress: 96},
+      { title: "Rank in Team", value: "#3", extra: "Top 76%"}
+    ]
+  };
+  
+
+  scorecardData1 = {
+    weekly: [
+      { title: 'Productivity', value: 1, progress: 20 },
+      { title: 'Speakeasy', value: '4h32m', extra: "+2h 14m last week"  },
+      { title: 'AFK%', value: 78, extra: "-20%" },
+      { title: 'Busy%', value: 80, extra:"-40%" },
+      { title: 'FMR Timeline', value: '3.8/5', progress: 76 },
+      { title: 'SDR', value: 45, progress: 76 },
+      { title: 'vSME Consult Rate', value: 24, progress: 76 },
+      { title: 'Escalation Rate', value: 4.78, progress: 76 },
+    ],
+    monthly: [
+      { title: 'Productivity', value: 3, progress: 45 },
+      { title: 'Speakeasy', value: '19h20m', extra: "+10h 14m last month" },
+      { title: 'AFK%', value: 65, extra: "+10%" },
+      { title: 'Busy%', value: 82, extra: "+65%" },
+      { title: 'FMR Timeline', value: '4.1/5', progress: 81 },
+      { title: 'SDR', value: 132, progress: 88 },
+      { title: 'vSME Consult Rate', value: 89, progress: 91 },
+      { title: 'Escalation Rate', value: 3.12, progress: 70 },
+    ],
+    overall: [
+      { title: 'Productivity', value: 8, progress: 92 },
+      { title: 'Speakeasy', value: '55h43m', extra: "20% better"},
+      { title: 'AFK%', value: 72, extra: "+76%"},
+      { title: 'Busy%', value: 85, extra: "90%"},
+      { title: 'FMR Timeline', value: '4.3/5', progress: 89 },
+      { title: 'SDR', value: 389, progress: 93 },
+      { title: 'vSME Consult Rate', value: 210, progress: 96 },
+      { title: 'Escalation Rate', value: 2.9, progress: 80 },
+    ]
+  };
+  
+  scorecardData2 = {
+    weekly: [
+      { title: 'Cases closed in <5 days', value: '60%', progress: 60 },
+      { title: 'Client Ratings', value: '3.5★', progress: 30 },
+      { title: 'IQA Quality Score', value: '80%', progress: 80 },
+    ],
+    monthly: [
+      { title: 'Cases closed in <5 days', value: '75%', progress: 75 },
+      { title: 'Client Ratings', value: '4.0★', progress: 80 },
+      { title: 'IQA Quality Score', value: '85%', progress: 85 },
+    ],
+    overall: [
+      { title: 'Cases closed in <5 days', value: '88%', progress: 88 },
+      { title: 'Client Ratings', value: '4.7★', progress: 95 },
+      { title: 'IQA Quality Score', value: '91%', progress: 91 },
+    ]
+  }; 
+  
+
+  // Filtered arrays for display
+  training_statistics : any[] = [];
+  performance_statistics : any[] = [];
+  performance_scorecard1 : any[] = [];
+  performance_scorecard2 : any[] = [];
+
+
   ngAfterViewInit() {
     this.createWeeklyActivitiesChart();
     this.createPerformanceChart();
+    this.applyFilters(); 
 
   }
 
@@ -129,112 +241,42 @@ export class TsrComponent implements AfterViewInit{
     });
   }
 
-  training_statistics = [
-    {
-      title: "Program Completion",
-      value: "45%",
-      progress: 45,
-    },
-    {
-      title: "Time Spent this Week",
-      value: "04h 32m",
-      extra: "+2h 14m last week",
-    },
-    {
-      title: "Current Skill Level",
-      value: "07",
-      badge: "Advanced",
-    },
-    {
-      title: "Leaderboard Rank",
-      value: "#14",
-      badge: "Top 10%",
-    }
-  ];
+    
 
-  performance_statistics = [
-    {
-      title: "Last Year Rating",
-      value: "3",
-      progress: 45,
-    },
-    {
-      title: "Current Score",
-      value: "04h 32m",
-      extra: "+2h 14m last week",
-    },
-    {
-      title: "Current Skill Level",
-      value: "07",
-      badge: "Advanced",
-    },
-    {
-      title: "Leaderboard Rank",
-      value: "#14",
-      badge: "Top 10%",
-    }
-  ];
+  applyFilters(): void {
+    this.training_statistics = this.filterData(this.trainingStatisticsData, this.trainingFilter);
+    this.performance_statistics = this.filterData(this.performanceStatisticsData, this.performanceFilter);
+    this.performance_scorecard1 = this.filterData(this.scorecardData1, this.scorecardFilter);
+    this.performance_scorecard2 = this.filterData(this.scorecardData2, this.scorecardFilter);
+  }
 
-  performance_scorecard1=[
-    {
-      title: "Productivity",
-      value: "3",
-      progress: 45,
-    },
-    {
-      title: "Speakeasy",
-      value: "04h 32m",
-      extra: "+2h 14m last week",
-    },
-    {
-      title: "AFK %",
-      value: "04h 32m",
-      extra: "+2h 14m last week",
-    },
-    {
-      title: "Busy %",
-      value: "04h 32m",
-      extra: "+2h 14m last week",
-    },
-    {
-      title: "FMR Timeline",
-      value: "3",
-      progress: 45,
-    },
-    {
-      title: "SDR",
-      value: "40%",
-      progress: 40,
-    },
-    {
-      title: "vSME Consult Rate",
-      value: "40%",
-      progress: 40,
-    },
-    {
-      title: "Escalation Rate",
-      value: "40%",
-      progress: 40,
-    }
-  ];
+  onTrainingFilterChange() {
+    this.training_statistics = this.filterData(this.trainingStatisticsData, this.trainingFilter);
+  }
+  
+  onPerformanceFilterChange() {
+    this.performance_statistics = this.filterData(this.performanceStatisticsData, this.performanceFilter);
+  }
+  
+  onScorecardFilterChange() {
+    this.performance_scorecard1 = this.filterData(this.scorecardData1, this.scorecardFilter);
+    this.performance_scorecard2 = this.filterData(this.scorecardData2, this.scorecardFilter);
+  }
+  
 
-  performance_scorecard2=[
-    {
-      title: "Cases Closed < 5 Days",
-      value: "60%",
-      progress: 60,
-    },
-    {
-      title: "CES %",
-      value: "60%",
-      progress: 60,
-    },
-    {
-      title: "IQA Quality Score",
-      value: "80%",
-      progress: 80,
+  
+  filterData(dataSets: { weekly: any[], monthly: any[], overall: any[] }, filterType: string): any[] {
+    switch (filterType) {
+      case 'weekly':
+        return dataSets.weekly;
+      case 'monthly':
+        return dataSets.monthly;
+      default:
+        return dataSets.overall;
     }
-  ];
+  }
+  
+  
 
   leaderboard = [
     { name: "Rahul Kumar", score: 9800, rank: " 🏆 1st Place" },
