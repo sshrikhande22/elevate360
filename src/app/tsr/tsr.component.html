@@ -195,36 +195,33 @@
         </div>
 
         <div class="chart-container">
-            <div class="chart-box">
-                <h3>Weekly Activities</h3>
-                <!-- <p>Your learning time throughout the week</p> -->
-                <div class="time-filter">
-                    <p>Your learning time throughout the week</p>
-                    <div class="dropdown">
-                        <select>
-                          <option value="all-time">Current Week</option>
-                          <option value="weekly">Last week</option>
-                        </select>
-                    </div>
-                </div>
-                <canvas id="weeklyActivitiesChart"></canvas>
+          <div class="chart-box">
+            <h3>Weekly Activities</h3>
+            <!-- <p>Your learning time throughout the week</p> -->
+            <div class="time-filter">
+              <p>Your learning time throughout the week</p>
+              <div class="toggle-buttons">
+                <button (click)="setData('currentWeek')" [class.active]="activeFilter === 'currentWeek'">Current Week</button>
+                <button (click)="setData('lastWeek')" [class.active]="activeFilter === 'lastWeek'">Last Week</button>
+              </div>
             </div>
+            <canvas id="weeklyActivitiesChart"></canvas>
+          </div>
 
-            <div class="chart-box">
-                <h3>Performance</h3>
-                <!-- <p>Track your program completion over time</p> -->
-                <div class="time-filter">
-                    <p>Track your program completion over time</p>
-                    <div class="dropdown">
-                        <select>
-                          <option value="all-time">Overall</option>
-                          <option value="monthly">Last month</option>
-                          <option value="weekly">Last week</option>
-                        </select>
-                    </div>
-                </div>
-                <canvas id="performanceChart"></canvas>
+          <div class="chart-box">
+            <h3>Performance</h3>
+            <div class="time-filter">
+              <p>Track your program completion over time</p>
+              <div class="dropdown">
+                <select (change)="updateChart($event)">
+                  <option value="overall">Overall</option>
+                  <option value="lastMonth">Last month</option>
+                  <option value="lastWeek">Last week</option>
+                </select>
+              </div>
             </div>
+            <canvas id="performanceChart"></canvas>
+          </div>
         </div>
 
         <div class="bottom">

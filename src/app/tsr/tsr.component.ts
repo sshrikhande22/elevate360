@@ -1,4 +1,4 @@
-import { Component , AfterViewInit, OnInit } from '@angular/core';
+import { Component , AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables } from 'chart.js/auto';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -128,20 +128,47 @@ export class TsrComponent implements AfterViewInit{
 
 
   ngAfterViewInit() {
-    this.createWeeklyActivitiesChart();
+    this.createWeeklyActivitiesChart(this.currentWeek);
     this.createPerformanceChart();
     this.applyFilters(); 
 
   }
 
-  createWeeklyActivitiesChart() {
-    new Chart('weeklyActivitiesChart', {
+  @ViewChild('weeklyActivitiesChart', { static: false }) chartRef!: ElementRef;
+  weeklyActivitiesChart!: Chart;
+  performanceChart!: Chart;
+  activeFilter = 'currentWeek';
+ 
+  labels = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+ 
+  currentWeek = [2, 3, 5.5, 2.5, 3, 4, 3];
+  lastWeek = [3, 2, 2.5, 5.5, 3, 4, 3];
+ 
+   // Define the type for our dataset object
+  dataSets: Record<string, { data: number[]; avg: number }> = {
+    overall: { data: [3, 4.5, 3.8, 4.5, 4.2, 4.8], avg: 3.5 },
+    lastMonth: { data: [2.8, 3.9, 4.1, 4.0, 4.4, 4.6], avg: 3.8 },
+    lastWeek: { data: [3.2, 4.2, 3.7, 4.1, 4.3, 4.5], avg: 3.9 }
+  };
+ 
+  selectedTimeRange: keyof typeof this.dataSets = 'overall'; // Explicitly define as one of the keys
+ 
+ 
+ 
+  createWeeklyActivitiesChart(data: number[]) {
+    if (this.weeklyActivitiesChart) {
+      this.weeklyActivitiesChart.destroy(); 
+    }
+ 
+    const ctx = document.getElementById('weeklyActivitiesChart') as HTMLCanvasElement;
+ 
+    this.weeklyActivitiesChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: this.labels,
         datasets: [{
           label: 'Hours Spent',
-          data: [2, 3, 5.5, 2.5, 3, 4, 3],
+          data: data,
           backgroundColor: 'rgba(54, 162, 235, 0.5)',
           borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1,
@@ -188,15 +215,30 @@ export class TsrComponent implements AfterViewInit{
       }
     });
   }
+ 
+  setData(filter: string) {
+    this.activeFilter = filter;
+    const newData = filter === 'currentWeek' ? this.currentWeek : this.lastWeek;
+    this.createWeeklyActivitiesChart(newData);
+  }
 
   createPerformanceChart() {
-    new Chart('performanceChart', {
+ 
+    if (this.performanceChart) {
+      this.performanceChart.destroy();
+    }
+ 
+    const ctx = document.getElementById('performanceChart') as HTMLCanvasElement;
+ 
+    const selectedData = this.dataSets[this.selectedTimeRange];
+ 
+    this.performanceChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
         datasets: [{
           label: 'Completion %',
-          data: [3, 4.5, 3.8, 4.5, 4.2, 4.8],
+          data:selectedData.data,
           backgroundColor: 'rgba(86, 186, 233, 0.5)',
           borderColor: 'rgb(65, 221, 221)',
           borderWidth: 2,
@@ -240,7 +282,10 @@ export class TsrComponent implements AfterViewInit{
       }
     });
   }
-
+  updateChart(event: any) {
+    this.selectedTimeRange = event.target.value;
+    this.createPerformanceChart();
+  }
     
 
   applyFilters(): void {
